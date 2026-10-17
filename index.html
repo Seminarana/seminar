@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover seminars, workshops, conferences and learning opportunities with SEMINARANA.COM.">
+<title>SEMINARANA.COM | Discover. Learn. Connect.</title>
+
+<style>
+:root {
+    --navy: #10213b;
+    --blue: #1769e0;
+    --teal: #12b8a6;
+    --light: #f4f8fc;
+    --muted: #69788c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #263449;
+    line-height: 1.7;
+}
+
+a { text-decoration: none; color: inherit; }
+
+header {
+    padding: 16px 7%;
+    min-height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 15px #10213b0b;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.logo span { color: var(--blue); }
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a:hover { color: var(--blue); }
+
+.nav-button, .button {
+    display: inline-block;
+    padding: 11px 21px;
+    background: var(--blue);
+    color: white;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.nav-button:hover, .button:hover {
+    background: #1052b5;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 85px 8%;
+    min-height: 480px;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 45px;
+    background: linear-gradient(125deg, #f3f8ff, #e6f9f5);
+}
+
+.eyebrow {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 13px;
+}
+
+.hero h1 {
+    color: var(--navy);
+    font-size: clamp(42px, 5.5vw, 68px);
+    line-height: 1.12;
+    margin-bottom: 22px;
+}
+
+.hero h1 span { color: var(--blue); }
+
+.hero-description {
+    max-width: 520px;
+    color: var(--muted);
+    margin-bottom: 28px;
+}
+
+.hero-card {
+    background: white;
+    padding: 35px;
+    border: 1px solid #e1eaf3;
+    border-radius: 20px;
+    box-shadow: 0 25px 65px #10213b12;
+}
+
+.hero-icon { font-size: 55px; }
+
+.hero-card h2 {
+    color: var(--navy);
+    font-size: 29px;
+    line-height: 1.3;
+    margin: 12px 0;
+}
+
+.hero-card p, .hero-card small { color: var(--teal); }
+
+.intro, .contact {
+    padding: 70px 8%;
+    text-align: center;
+}
+
+.intro h2, .section-heading h2, .contact h2 {
+    color: var(--navy);
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.intro > p:last-child, .contact .description {
+    max-width: 650px;
+    margin: 0 auto 20px;
+    color: var(--muted);
+}
+
+.events {
+    padding: 70px 8%;
+    background: var(--light);
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.event-count { color: var(--muted); }
+
+.search-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #d9e3ef;
+    border-radius: 8px;
+    font-size: 15px;
+    outline-color: var(--blue);
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0 28px;
+}
+
+.filter {
+    padding: 9px 17px;
+    background: white;
+    border: 1px solid #d9e3ef;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.filter.active, .filter:hover {
+    background: var(--navy);
+    color: white;
+}
+
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 23px;
+}
+
+.event-card {
+    background: white;
+    border: 1px solid #e6edf5;
+    border-radius: 13px;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px #10213b12;
+}
+
+.event-image {
+    min-height: 145px;
+    display: grid;
+    place-items: center;
+    font-size: 55px;
+}
+
+.technology { background: #dcecff; }
+.business { background: #d8f5eb; }
+.education { background: #fcebd4; }
+
+.event-body { padding: 23px; }
+
+.tag {
+    font-size: 11px;
+    font-weight: bold;
+    color: var(--blue);
+    background: #eaf2ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.event-body h3 {
+    color: var(--navy);
+    line-height: 1.4;
+    margin: 15px 0 9px;
+}
+
+.event-body p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.event-info { font-size: 13px; margin: 7px 0; }
+
+.event-link {
+    display: inline-block;
+    margin-top: 17px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.event-link:hover { text-decoration: underline; }
+
+.call-to-action {
+    padding: 70px 8%;
+    text-align: center;
+    background: var(--navy);
+    color: white;
+}
+
+.call-to-action .eyebrow { color: #71e2d3; }
+
+.call-to-action h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.call-to-action p { margin-bottom: 24px; color: #d1dbea; }
+
+.button-light {
+    background: white;
+    color: var(--navy);
+}
+
+.contact .small-note {
+    display: block;
+    margin-top: 15px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer {
+    padding: 30px 8%;
+    text-align: center;
+    background: #091629;
+    color: #c4cfdf;
+    font-size: 13px;
+}
+
+.footer-logo { color: white; }
+footer p { margin-top: 7px; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+    header { padding: 15px 5%; flex-wrap: wrap; }
+    .logo { font-size: 19px; }
+    .menu-toggle { display: block; }
+
+    nav {
+        display: none;
+        flex-basis: 100%;
+        align-items: stretch;
+        flex-direction: column;
+        padding: 10px 0;
+        gap: 8px;
+    }
+
+    nav.open { display: flex; }
+    nav a { padding: 7px 0; }
+
+    .hero { padding: 50px 6%; }
+    .hero h1 { font-size: 45px; }
+    .hero-card { padding: 25px; }
+
+    .intro, .events, .contact { padding: 50px 6%; }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .event-grid { grid-template-columns: 1fr; }
+    .call-to-action { padding: 50px 6%; }
+    .call-to-action h2 { font-size: 27px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="#home" class="logo">SEMINARANA<span>.COM</span></a>
+
+    <button class="menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+    <nav id="navigation">
+        <a href="#home">Home</a>
+        <a href="#seminars">Seminars</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#seminars" class="nav-button">Explore Events</a>
+    </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+    <div>
+        <p class="eyebrow">YOUR GATEWAY TO KNOWLEDGE</p>
+        <h1>Discover. Learn.<br><span>Connect.</span></h1>
+        <p class="hero-description">
+            Find seminars, workshops and conferences that inspire new
+            ideas, develop your skills and connect you with people.
+        </p>
+        <a href="#seminars" class="button">Explore Seminars →</a>
+    </div>
+
+    <div class="hero-card">
+        <div class="hero-icon">🎓</div>
+        <p class="eyebrow">LEARN SOMETHING NEW</p>
+        <h2>Your next opportunity starts here.</h2>
+        <small>Knowledge • Networking • Growth</small>
+    </div>
+</section>
+
+<section class="intro" id="about">
+    <p class="eyebrow">WELCOME TO SEMINARANA</p>
+    <h2>Ideas Become Opportunities.</h2>
+    <p>
+        We help people discover learning opportunities, professional
+        gatherings and events that bring communities together.
+        Our goal is to connect participants, speakers and organizers.
+    </p>
+</section>
+
+<section class="events" id="seminars">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">EXPLORE OPPORTUNITIES</p>
+            <h2>Find Your Next Event</h2>
+        </div>
+        <span class="event-count" id="eventCount">3 events</span>
+    </div>
+
+    <input type="search" id="searchInput" class="search-input"
+        placeholder="Search events, topics or locations..."
+        aria-label="Search events">
+
+    <div class="filters">
+        <button class="filter active" data-category="All">All Events</button>
+        <button class="filter" data-category="Technology">Technology</button>
+        <button class="filter" data-category="Business">Business</button>
+        <button class="filter" data-category="Education">Education</button>
+    </div>
+
+    <div class="event-grid" id="eventGrid">
+        <article class="event-card" data-category="Technology">
+            <div class="event-image technology">💻</div>
+            <div class="event-body">
+                <span class="tag">Technology</span>
+                <h3>Digital Skills & Innovation</h3>
+                <p>Discover digital tools, emerging technologies and practical skills for the future.</p>
+                <div class="event-info">📍 Kigali, Rwanda</div>
+                <div class="event-info">📅 Date to be announced</div>
+                <a class="event-link" href="#contact">Ask About This Event →</a>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="Business">
+            <div class="event-image business">🤝</div>
+            <div class="event-body">
+                <span class="tag">Business</span>
+                <h3>Entrepreneurship & Leadership</h3>
+                <p>Explore business ideas, leadership skills and opportunities for professional growth.</p>
+                <div class="event-info">📍 Kigali, Rwanda</div>
+                <div class="event-info">📅 Date to be announced</div>
+                <a class="event-link" href="#contact">Ask About This Event →</a>
+            </div>
+        </article>
+
+        <article class="event-card" data-category="Education">
+            <div class="event-image education">📚</div>
+            <div class="event-body">
+                <span class="tag">Education</span>
+                <h3>Teaching & Learning Workshop</h3>
+                <p>Share educational ideas, teaching practices and effective learning strategies.</p>
+                <div class="event-info">📍 Kigali, Rwanda</div>
+                <div class="event-info">📅 Date to be announced</div>
+                <a class="event-link" href="#contact">Ask About This Event →</a>
+            </div>
+        </article>
+    </div>
+
+    <p id="noResults" hidden>No matching events found. Try another search.</p>
+</section>
+
+<section class="call-to-action">
+    <p class="eyebrow">HAVE SOMETHING TO SHARE?</p>
+    <h2>Bring People Together Around Your Ideas.</h2>
+    <p>Contact us to discuss publishing or promoting your seminar.</p>
+    <a href="#contact" class="button button-light">Contact Our Team</a>
+</section>
+
+<section class="contact" id="contact">
+    <p class="eyebrow">LET'S CONNECT</p>
+    <h2>Get in Touch</h2>
+    <p class="description">
+        Contact our team for event information, partnerships or seminar promotion.
+    </p>
+    <a href="mailto:info@seminarana.com" class="button">Email Our Team</a>
+    <span class="small-note">Replace this sample email with your verified contact address.</span>
+</section>
+</main>
+
+<footer>
+    <a href="#home" class="logo footer-logo">SEMINARANA<span>.COM</span></a>
+    <p>Discover. Learn. Connect.</p>
+    <p>© <span id="year"></span> SEMINARANA.COM. All rights reserved.</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById("searchInput");
+const eventCards = document.querySelectorAll(".event-card");
+const filterButtons = document.querySelectorAll(".filter");
+const eventCount = document.getElementById("eventCount");
+const noResults = document.getElementById("noResults");
+const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
+
+let selectedCategory = "All";
+
+function filterEvents() {
+    const searchText = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    eventCards.forEach(card => {
+        const matchesCategory =
+            selectedCategory === "All" ||
+            card.dataset.category === selectedCategory;
+
+        const matchesSearch =
+            card.textContent.toLowerCase().includes(searchText);
+
+        const visible = matchesCategory && matchesSearch;
+        card.hidden = !visible;
+
+        if (visible) visibleCount++;
+    });
+
+    eventCount.textContent =
+        `${visibleCount} event${visibleCount === 1 ? "" : "s"}`;
+
+    noResults.hidden = visibleCount !== 0;
+}
+
+searchInput.addEventListener("input", filterEvents);
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedCategory = button.dataset.category;
+
+        filterButtons.forEach(item => {
+            item.classList.toggle("active", item === button);
+        });
+
+        filterEvents();
+    });
+});
+
+menuToggle.addEventListener("click", () => {
+    const isOpen = navigation.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navigation.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+    });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+filterEvents();
+</script>
+
+</body>
+</html>
